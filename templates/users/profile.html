@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block head_title %}{{ user.username }} | Django Blog{% endblock head_title %}
+
+{% block content %}
+<section class="profile">
+  <div class="container">
+    <div class="profile__inner">
+      <div class="profile__item">
+        <div class="profile__info">
+          <div class="profile__img">
+            {% if user.profile.image %}
+            <img src="{{ profile.image.url }}" alt="{{ user.username }}">
+            {% else %}
+            <img src="{% static 'profile_image/profile_base.png' %}" alt="{{ user.username }}">
+            {% endif %}
+          </div>
+          <div class="profile__right">
+            <div class="profile__name">
+              {{ user.username }}
+            </div>
+            <div class="profile__about--me">
+              {{ user.profile.about_me }}
+            </div>
+          </div>
+        </div>
+        <div class="profile__buttons">
+          <a href="{% url 'users:edit_profile' %}" class="btn__link">
+            <div class="btn__edit">
+              Edit your profile
+            </div>
+          </a>
+          <a href="{% url 'users:password_change' %}" class="btn__link">
+            <div class="btn__password">
+              Change password
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

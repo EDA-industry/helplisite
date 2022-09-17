@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block head_title %}Login{% endblock %}
+
+{% block content %}
+  <section class="login__page">
+    <div class="container">
+      <div class="login__inner">
+        <div class="login__image">
+          <div class="login__title">Login to</div>
+          <img class="main__logo" src="{% static 'img/logo.svg' %}" alt="">
+        </div>
+        <form class="login__form" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <div class="form__box">
+              <div class="form-text">
+                Email
+              </div>
+            </div>
+            <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="id_email"
+              name="email" value='{{ form.email.value|default:"" }}'>
+            {% if form.email.errors %}
+            <div class="invalid-feedback">{{ form.email.errors }}</div>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <div class="form__box">
+              <div class="form-text">
+                Password
+              </div>
+            </div>
+            <input type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}"
+              id="id_password" name="password" value='{{ form.password.value|default:"" }}'>
+            {% if form.password.errors %}
+            <div class="invalid-feedback">{{ form.password.errors }}</div>
+            {% endif %}
+          </div>
+          <button type="submit" class="login__button">Login</button>
+        </form>
+        <br>
+        <p class="login__link">Forgot your password? <a href="{% url 'users:password_reset' %}">Click here</a></p>
+        <p class="login__link">Don't have an account? <a href="{% url 'users:signup' %}">Sign up</a></p>
+      </div>
+    </div>
+  </section>  
+{% endblock %}
+</body>
+</html>
+

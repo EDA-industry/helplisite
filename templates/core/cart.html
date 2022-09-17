@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+{% endblock %}
+{% block head_title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<section class="cart">
+  <div class="container">
+    <div class="cart__inner">
+      <div class="cart__title">
+        Products in your cart
+      </div>
+      {% for product in products %}
+      <div class="cart__item">
+        <div class="cart__img">
+          <img src="{{ product.image.url }}" alt="">
+        </div>
+        <div class="cart__info">
+          <div class="cart__item__title">
+            {{ product.title }}
+          </div>
+          <div class="cart__item__info">
+            <div class="cart__item__description">
+              {{ product.description }}
+            </div>
+            <div class="cart__item__product--info">
+              <p>Time to expiration: {{ product.time_left }}</p>
+              <p>Shop: {{ product.author }}</p>
+              <p>Adress: {{ product.adress }}</p>
+            </div>
+            <div class="cart__item__tags">
+              {% for tag in product.tags.all %}
+              <span class="badge badge-dark">{{ tag }}</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+      
+</section>
+{% endblock content %}
+{% block js_links %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock js_links %}

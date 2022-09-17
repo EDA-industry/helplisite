@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}">
+{% endblock %}
+{% block head_title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<section class="product">
+  <div class="container">
+    <div class="product__inner">
+      <div class="product__main">
+        <div class="product__left">
+          <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product__img">
+        </div>
+        <div class="product__right">
+          <div class="product__content">
+            <div class="product__top">
+              <div class="product__title">
+                {{ product.title }}
+              </div>
+              <div class="product__text">
+                {{ product.description }}
+              </div>
+            </div>
+            <div class="product__middle">
+              <div class="product__shelf--life">
+                Time to expiration: 
+                {{ product.time_left }}
+              </div>
+              <div class="product__shop">
+                Author:
+                {{ product.author }}
+              </div>
+              <div class="product__adress">
+                Adress:
+                {{ product.adress }}
+              </div>
+            </div>
+            <div class="product__bottom">
+              <div class="product__tags">
+                Tags:
+                {% for tag in product.tags.all %}
+                <span class="badge badge-dark">{{ tag }}</span>
+                {% endfor %}
+              </div>
+              <div class="product__price">
+                {% if product.price == 0 %}
+                  Free
+                {% else %}
+                {{ product.price }} KZT
+                {% endif %}
+              </div>
+              {% if request.user.is_authenticated and  product.author != user %}
+                <a href="{% url 'core:cart_add_product' product.id %}" class="product__link">    
+                  <div class="product__button">
+                    Add to Cart
+                  </div>
+                </a>
+                {% elif product.author == user %}
+                <a href="{% url 'core:product_delete' product.id %}" class="product__link">    
+                  <div class="product__button">
+                    Delete product
+                  </div>
+                </a>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
+{% block js_links %}
+<script src="{% static 'js/cart.js' %}"></script>
+{% endblock js_links %}

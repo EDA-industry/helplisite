@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block head_title %}{% if update %}Update product{% else %}Create a product{% endif %}{% endblock head_title %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h2 class=" my-5">{% if update %}Update product{% else %}Create a product{% endif %}</h2>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-group">
+          {{ form.title.label_tag }}
+          <input type="text" class="form-control {% if form.title.errors %}is-invalid{% endif %}" id="id_title"
+            name="title" value='{{ form.title.value|default:"" }}'>
+          {% if form.title.errors %}
+          <div class="invalid-feedback">{{ form.title.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.quantity.label_tag }}
+          <input type="number" class="form-control {% if form.quantity.errors %}is-invalid{% endif %}" id="id_quantity"
+            name="quantity" value='{{ form.quantity.value|default:"" }}'>
+          {% if form.quantity.errors %}
+          <div class="invalid-feedback">{{ form.quantity.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.adress.label_tag }}
+          <input type="text" class="form-control {% if form.adress.errors %}is-invalid{% endif %}" id="id_adress"
+            name="adress" value='{{ form.adress.value|default:"" }}'>
+          {% if form.adress.errors %}
+          <div class="invalid-feedback">{{ form.adress.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.shelf_life.label_tag }}
+          <input type="date" class="form-control {% if form.shelf_life.errors %}is-invalid{% endif %}" id="id_shelf_life"
+            name="shelf_life" value='{{ form.shelf_life.value|default:"" }}'>
+          {% if form.shelf_life.errors %}
+          <div class="invalid-feedback">{{ form.shelf_life.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.description.label_tag }}
+          <textarea type="text" class="form-control {% if form.description.errors %}is-invalid{% endif %}" id="id_description"
+            name="description" cols="40" rows="10">{{ form.description.value|default:"" }}</textarea>
+          {% if form.description.errors %}
+          <div class="invalid-feedback">{{ form.description.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.image.label_tag }}<br>
+          <input type="file" class="{% if form.image.errors %}is-invalid{% endif %}" id="id_image" name="image"
+            accept="image/*">
+          {% if form.image.errors %}
+          <div class="invalid-feedback">{{ form.image.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.category.label_category }}<br>
+          <select class="custom-select w-25" name="category" id="id_category">
+            {% for name, value in form.category.field.choices %}
+            <option value="{{ name }}">{{ value }}</option>
+            {% endfor %}
+          </select>
+          {% if form.tags.errors %}
+          <div class="invalid-feedback">{{ form.category.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="form-group">
+          {{ form.tags.label_tag }}<br>
+          <select class="custom-select w-25" name="tags" id="id_tags" multiple>
+            {% for name, value in form.tags.field.choices %}
+            <option value="{{ name }}">{{ value }}</option>
+            {% endfor %}
+          </select>
+          {% if form.tags.errors %}
+          <div class="invalid-feedback">{{ form.tags.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          {{ form.price.label_tag }}
+          <input type="number" step="any" class="form-control {% if form.price.errors %}is-invalid{% endif %}" id="id_price"
+            name="price" value='{{ form.price.value|default:"" }}'>
+          {% if form.price.errors %}
+          <div class="invalid-feedback">{{ form.price.errors }}</div>
+          {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          {% if update %}Update the product{% else %}Create a product{% endif %}
+        </button>
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+{% endblock %}
+{% block content %}
+<section class="shop">
+  <div class="container">
+    <div class="shop__inner">
+      <div class="shop__sidebar">
+        <div class="shop__drop__menu">
+          <form action="" method="get">
+          <div class="shop__menu__item" id="sortItem">
+            <div onclick="menuOpen('sortItem')" class="shop__menu__title">
+              Sort by:
+            </div>
+            <div class="shop__menu__text">
+              <ul class="shop__menu__list">
+                <li>
+                  <input type="radio" name="sort" id="sort-1" value="1">
+                  <label for="sort-1">Shelf life</label>
+                </li>
+                <li>
+                  <input type="radio" name="sort" id="sort-2" value="2">
+                  <label for="sort-2">Price</label>
+                </li>
+              </ul>   
+            </div>
+          </div>
+          <div class="shop__menu__item" id="filterItem">
+            <div onclick="menuOpen('filterItem')" class="shop__menu__title">
+              Add filters:
+            </div>
+            <div class="shop__menu__text">
+              <ul class="shop__menu__list">
+                {% for category in categories.all %}
+                <li>
+                  <input type="checkbox" name="categories" id="{{category}}" value="{{ category }}">
+                  <label for="{{category}}">{{category}}</label>
+                </li>
+                {% endfor %}
+              </ul>   
+            </div>
+
+          </div>
+          <div class="shop__menu__btn">
+            <button type="submit">Sort</button>
+            <a href="{% url 'core:home' %}">Reset</a>
+          </div>
+        </form>
+        </div>
+      </div>
+      <div class="products__main">
+        <div class="row">
+          {% for product in products %}
+          {% if product.quantity >= 1 %}
+            <div class="shop__item">
+              {% if product.image %}
+              <img class="shop__img" src="{{ product.image.url }}" alt="{{ product.title }}">
+              {% endif %}
+              <div class="item__body">
+                <div class="item__info">
+                  <a href="{% url 'core:product' product.id product.slug %}">
+                    <h2 class="item__title">{{ product.title }} </h2>
+                  </a>
+                  <div>
+                    <p>Time to expiration: {{ product.time_left }}</p>
+                    <p>Shop: {{ product.author }}</p>
+                    <p>Left in stash: {{ product.quantity }}</p>
+                  </div>
+                </div>
+                
+                <a class='item__link' href="{% url 'core:product' product.id product.slug %}">
+                  <div class="item__btn">
+                    Learn more ...
+                  </div>
+                </a>
+              </div>
+            </div>
+          {% endif %}
+          
+          {% empty %}
+          <p class="shop__empty">Продукты не найдены</p>
+          {% endfor %}
+          {% if object_list|length|divisibleby:"3" != "True" %}
+            <div class="shop__item empty"></div>
+          {% endif %}
+        </div>
+
+        <div class="row">
+          <nav class="col-lg-6 offset-lg-3 mt-4 d-flex justify-content-center">
+            <ul class="pagination">
+
+              {% if page_obj.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#"">Previous</a>
+              </li>
+              {% endif %}
+        
+              {% for i in page_obj.paginator.page_range %}
+              <li class=" page-item {% if page_obj.number == i %}active{% endif %}">
+                  <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+              </li>
+              {% endfor %}
+
+              {% if page_obj.has_next %}
+              <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+              </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a class="page-link" href="#">Next</a>
+              </li>
+              {% endif %}
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block js_links %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock js_links %}

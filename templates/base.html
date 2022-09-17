@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  {% block css_links %}
+  {% endblock %}
+  <title>{% block head_title %}EDA industry{% endblock %}</title>
+</head>
+
+<body>
+  {% block header %}
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <div class="container">
+          <a href="{% url 'core:home' %}" class="navbar-brand">
+            <img class="main__logo" src="{% static 'img/logo.svg' %}" alt="">
+          </a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="main__nav collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+              <a href="{% url 'core:home' %}"
+                class="nav__item nav-item nav-link  {% if request.path == '/' %}active{% endif %}">Home</a>
+            </div>
+            <div class="header__search">
+              <form action="{% url 'core:home' %}" method="get">
+                <input type="search" name="search" id="search" placeholder="Search for products...">
+                <button type="submit"><img src="{% static 'img/search_icon.svg' %}" alt=""></button>
+              </form>
+            </div>
+          </div>
+          {% if request.user.is_authenticated %}
+          <nav class="nav__drop" id="nav__drop">
+            <div class="menu__main">
+              <img src="data:image/png;base64,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">
+              <ul class="menu__list">
+                <li>
+                  <a href="{% url 'users:profile' request.user.username %}" class="menu__link">Profile</a>
+                </li>
+                {% if request.user.is_staff %}
+                <li>
+                  <a href="{% url 'core:product_create' %}" class="menu__link">Add product</a>
+                </li>
+                {% else %}
+
+                <li>
+                  <a href="{% url 'core:cart' %}" class="menu__link">Cart</a>
+                </li>
+                {% endif %}
+                <li>
+                  <a href="{% url 'users:logout' %}" class="menu__link">Log out</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          {% else %}
+          <nav class="navbar-nav ml-auto">
+            <a href="{% url 'users:login' %}"
+              class="nav__item nav-item nav-link {% if request.path == '/users/login/' %}active{% endif %}">Log in</a>
+            <a href="{% url 'users:signup' %}"
+              class="nav__item nav-item nav-link {% if request.path == '/users/signup/' %}active{% endif %}">Sign up</a>
+          </nav>
+          {% endif %}
+        </div>
+      </nav>
+    {% endblock header %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endfor %}
+    {% block content %}
+    {% endblock content %}
+  <footer class="footer">
+    Footer
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    crossorigin="anonymous"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+  {% block js_links %}
+  {% endblock %}
+</body>
+</html>
