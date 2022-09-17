@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+*{
+    font-family: 'Inter', sans-serif;
+}
+li{
+    list-style: none;
+}
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.main__logo{
+    width: 150px;
+    height: auto;
+}
+.nav__drop{
+    color: #000;
+}
+.menu__list{
+    position: absolute;
+    left: -20px;
+    width: 200px;
+    display: none;
+    padding: 20px;
+    background-color: #fff;
+    top: 60px;
+}
+.menu__main:hover .menu__list{
+    display: block;
+}
+.menu__main{
+    position: relative;
+    list-style: none;
+}
+.header__search input{
+    background-color: #E2E2E2;
+    border: none;
+    border-radius: 10px 0 0 10px;
+    height: 40px;
+    width: 400px;
+    padding-left: 10px;
+}
+.header__search form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header__search button{
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 0 10px 10px 0;
+}
+.header__search img{
+    width: 20px;
+    height: 20px;
+}

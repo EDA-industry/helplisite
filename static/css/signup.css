@@ -1,0 +1,103 @@
+.signup{
+    background-color: #000;
+    padding-bottom: 20px;
+}
+.signup__logo{
+    margin: 0 auto;
+    width: 200px;
+    padding-top: 30px;
+}
+.signup__logo img{
+    width: 200px;
+}
+.signup__inner{
+    width: 100%;
+}
+.signup__box{
+    display: flex;
+    border-radius: 20px;
+    background-color: #fff;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 850px;
+    margin: 20px auto;
+}
+.signup__title{
+    font-size: 36px;
+    padding: 20px 0;
+}
+.signup__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-group{
+    height: 80px;
+    width: 250px;
+}
+.form-group--checkbox{
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 250px;
+    margin-top: 50px;
+}
+.form-group--checkbox input{
+    opacity: 0;
+    position: absolute;
+    z-index: 12;
+    
+    width: 100%;
+    height: 50px;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: lightgreen;
+    -webkit-transition: .4s;
+    height: 50px;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 42px;
+    width: 121px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.form-group--checkbox input:checked + .slider{
+    background-color: lightcoral;
+}
+.form-group--checkbox input:focus + .slider{
+    box-shadow: 0 0 1px #2196F3;
+}
+.form-group--checkbox input:checked + .slider::before{
+    -webkit-transform: translateX(121px);
+    -ms-transform: translateX(121px);
+    transform: translateX(121px);
+}
+.slider__text{
+    text-align: center;
+    position: absolute;
+    height: 42px;
+    width: 121px;
+    top: 25%;
+    left: 4px;
+    bottom: 4px;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.form-group--checkbox input:checked + .slider .slider__text{
+    -webkit-transform: translateX(121px);
+    -ms-transform: translateX(121px);
+    transform: translateX(121px);
+}
