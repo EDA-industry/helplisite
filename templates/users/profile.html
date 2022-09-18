@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
 {% endblock %}
 
-{% block head_title %}{{ user.username }} | Django Blog{% endblock head_title %}
+{% block head_title %}{{ user.username }}'s profile{% endblock head_title %}
 
 {% block content %}
 <section class="profile">
@@ -17,26 +17,30 @@
             {% if user.profile.image %}
             <img src="{{ profile.image.url }}" alt="{{ user.username }}">
             {% else %}
-            <img src="{% static 'profile_image/profile_base.png' %}" alt="{{ user.username }}">
+            <img src="{% static 'img/profile_base.png' %}" alt="{{ user.username }}">
             {% endif %}
           </div>
           <div class="profile__right">
             <div class="profile__name">
-              {{ user.username }}
+              {{ user.first_name }} 
+              {{ user.last_name }}
             </div>
-            <div class="profile__about--me">
-              {{ user.profile.about_me }}
+            <div class="profile__email">
+              {{ user.email }}
             </div>
           </div>
         </div>
+        <div class="profile__about--me">
+          {{ user.profile.about_me }}
+        </div>
         <div class="profile__buttons">
           <a href="{% url 'users:edit_profile' %}" class="btn__link">
-            <div class="btn__edit">
-              Edit your profile
+            <div class="btn__edit profile__btn">
+              Edit my profile
             </div>
           </a>
           <a href="{% url 'users:password_change' %}" class="btn__link">
-            <div class="btn__password">
+            <div class="btn__password profile__btn">
               Change password
             </div>
           </a>

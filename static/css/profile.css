@@ -1,10 +1,8 @@
 .profile__item{
     width: 90%;
-    height: 400px;
     padding: 40px;
     margin: 20px auto;
     border-radius: 10px;
-    border: 4px lightblue solid;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +14,9 @@
     width: 100%;
 }
 .profile__img img{
-    width: 300px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
 }
 .profile__name{
     font-size: 36px;
@@ -28,4 +28,28 @@
     justify-content: space-around;
     width: 100%;
     padding-top: 40px;
+}
+.profile__about--me{
+    width: 100%;
+    display: block;
+    padding-top: 50px;
+    padding-left: 140px;
+    height: 200px;
+}
+.profile__btn{
+    width: 200px;
+    height: 50px;
+    background-color: #248B00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 10px;
+    transition: ease-in-out .2s;
+}
+.btn__link:hover{
+    text-decoration: none;
+}
+.profile__btn:hover{
+    background-color: #248B33;
 }

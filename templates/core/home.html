@@ -64,9 +64,10 @@
                     <h2 class="item__title">{{ product.title }} </h2>
                   </a>
                   <div>
-                    <p>Time to expiration: {{ product.time_left }}</p>
-                    <p>Shop: {{ product.author }}</p>
-                    <p>Left in stash: {{ product.quantity }}</p>
+                    <p class="item__info__mini no__margin">Time to expiration:</p>
+                    <p class="item__info__mini">{{ product.time_left }}</p>
+                    <p class="item__info__mini">Shop: {{ product.author }}</p>
+                    <p class="item__info__mini no__margin">Left in stash: {{ product.quantity }}</p>
                   </div>
                 </div>
                 
