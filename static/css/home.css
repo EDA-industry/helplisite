@@ -57,7 +57,7 @@
     text-decoration: none;
 }
 .item__btn:hover{
-    background-color: #248B00;
+    background-color: #248B33;
     transition: ease-in-out .2s;
 }
 .item__btn{
@@ -87,6 +87,7 @@
 .shop__menu__item{
     border-bottom: 1px solid #248B00;
     height: 30px;
+    padding-top: 2px;
     overflow: hidden;
     transition: ease-in-out .2s;
 }
@@ -100,8 +101,16 @@
 .shop__menu__list{
     padding: 0;
     margin: 0;
+    margin-top: 10px;
 }
 .shop__menu__list a{
     color: black;
     text-decoration: none;
+}
+.shop__menu__btn{
+    padding-top: 10px;
+}
+.shop__menu__btn button{
+    width: 100px;
+    height: 30px;
 }

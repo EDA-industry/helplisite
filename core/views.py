@@ -37,6 +37,10 @@ class HomeView(View):
                 products = Product.objects.filter(category__name=filters)
             return render(request, 'core/home.html',{'products':products, 'categories':categories})
 
+class AboutView(ListView):
+    template_name="core/about.html"
+    queryset=0
+
 @api_view()
 def cart(request):
     try:

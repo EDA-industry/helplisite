@@ -15,49 +15,48 @@
 
 <body>
   {% block header %}
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <header class="header">
         <div class="container">
-          <a href="{% url 'core:home' %}" class="navbar-brand">
-            <img class="main__logo" src="{% static 'img/logo.svg' %}" alt="">
-          </a>
-          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="main__nav collapse navbar-collapse justify-content-between" id="navbarCollapse">
-            <div class="navbar-nav">
-              <a href="{% url 'core:home' %}"
-                class="nav__item nav-item nav-link  {% if request.path == '/' %}active{% endif %}">Home</a>
+          <div class="header__inner">
+            <a href="{% url 'core:home' %}" class="header__logo">
+              <img class="main__logo" src="{% static 'img/logo.svg' %}" alt="">
+            </a>
+            <div class="main__nav">
+              <div class="header__nav">
+                <a href="{% url 'core:home' %}"
+                  class="nav__item {% if request.path == '/' %}active{% endif %}">Home</a>
+              </div>
+              <div class="header__search">
+                <form action="{% url 'core:home' %}" method="get">
+                  <input type="search" name="search" id="search" placeholder="Search for products...">
+                  <button class = "search__button" type="submit"><img src="{% static 'img/search_icon.svg' %}" alt=""></button>
+                </form>
+              </div>
             </div>
-            <div class="header__search">
-              <form action="{% url 'core:home' %}" method="get">
-                <input type="search" name="search" id="search" placeholder="Search for products...">
-                <button class = "search__button" type="submit"><img src="{% static 'img/search_icon.svg' %}" alt=""></button>
-              </form>
-            </div>
-          </div>
-          {% if request.user.is_authenticated %}
-          <nav class="nav__drop" id="nav__drop">
-            <div class="menu__main">
-              <img src="{% static 'img/profile.svg' %}" alt="">
-              <div class="main__triangle"></div>
-              <ul class="menu__list">
-                <li>
-                  <a href="{% url 'users:profile' request.user.username %}" class="menu__link">Profile</a>
-                </li>
-                {% if request.user.is_staff %}
-                <li>
-                  <a href="{% url 'core:product_create' %}" class="menu__link">Add product</a>
-                </li>
-                {% else %}
+            {% if request.user.is_authenticated %}
+            <nav class="nav__drop" id="nav__drop">
+              <div class="menu__main">
+                <img src="{% static 'img/profile.svg' %}" alt="">
+                <div class="main__triangle"></div>
+                <ul class="menu__list">
+                  <li>
+                    <a href="{% url 'users:profile' request.user.username %}" class="menu__link">Profile</a>
+                  </li>
+                  {% if request.user.is_staff %}
+                  <li>
+                    <a href="{% url 'core:product_create' %}" class="menu__link">Add product</a>
+                  </li>
+                  {% else %}
 
-                <li>
-                  <a href="{% url 'core:cart' %}" class="menu__link">Cart</a>
-                </li>
-                {% endif %}
-                <li>
-                  <a href="{% url 'users:logout' %}" class="menu__link">Log out</a>
-                </li>
-              </ul>
+                  <li>
+                    <a href="{% url 'core:cart' %}" class="menu__link">Cart</a>
+                  </li>
+                  {% endif %}
+                  <li>
+                    <a href="{% url 'users:logout' %}" class="menu__link">Log out</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </nav>
           {% else %}
@@ -69,7 +68,7 @@
           </nav>
           {% endif %}
         </div>
-      </nav>
+      </header>
     {% endblock header %}
     {% for message in messages %}
     <div class="alert alert-success alert-dismissible fade show">

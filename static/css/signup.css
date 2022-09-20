@@ -101,3 +101,14 @@
     -ms-transform: translateX(121px);
     transform: translateX(121px);
 }
+.signup__btn{
+    background-color: #1B6700;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    width: 300px;
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}

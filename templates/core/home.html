@@ -10,7 +10,7 @@
       <div class="shop__sidebar">
         <div class="shop__drop__menu">
           <form action="" method="get">
-          <div class="shop__menu__item" id="sortItem">
+          <div class="shop__menu__item active" id="sortItem">
             <div onclick="menuOpen('sortItem')" class="shop__menu__title">
               Sort by:
             </div>
@@ -45,7 +45,6 @@
           </div>
           <div class="shop__menu__btn">
             <button type="submit">Sort</button>
-            <a href="{% url 'core:home' %}">Reset</a>
           </div>
         </form>
         </div>

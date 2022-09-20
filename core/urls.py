@@ -1,5 +1,6 @@
+from unicodedata import name
 from django.urls import path
-from .views import HomeView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, add_product, cart, clear_cart
+from .views import HomeView, ProductView, ProductCreateView, ProductUpdateView, ProductDeleteView, AboutView, add_product, cart, clear_cart
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
@@ -10,4 +11,5 @@ urlpatterns = [
     path('cart/', cart, name="cart"),
     path('cart/<int:product_id>', add_product, name="cart_add_product"),
     path('cart/delete/', clear_cart, name="cart_clear"),
+    path('about/', AboutView.as_view(), name="about"),
 ]

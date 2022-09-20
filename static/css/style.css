@@ -5,12 +5,44 @@
 li{
     list-style: none;
 }
+.header{
+    background-color: #F5F5F5;
+}
+.header__inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.header__logo img{
+    margin-bottom: 15px;
+}
 .container{
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
 }
-
+.main__nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+}
+.header__nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav__item{
+    color: #808080;
+}
+.nav__item:hover{
+    color: #707070;
+    text-decoration: none;
+}
+.nav__item.active{
+    color: #000;
+}
 .main__logo{
     width: 150px;
     height: auto;
